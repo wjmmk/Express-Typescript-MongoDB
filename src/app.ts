@@ -13,5 +13,5 @@ app.use(express.json())
 // Routes
 app.use(router)
 
-dbMongo().then(()=> console.log('Conexion to DataBase Ok!!!'))
-app.listen(PORT, () => console.log(`!!! Server Started in port: ${PORT}`))
+dbMongo().then(()=> console.log('Conexion to DataBase: (☞ﾟヮﾟ)☞ ✅'))
+app.listen(PORT, () => console.log(`!!! Server Started 🚀 in port: ${PORT}`))
