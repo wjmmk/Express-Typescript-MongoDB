@@ -24,20 +24,19 @@ const registerNewUser = async ({email, password, name, age, ocupacion, phone, ro
     return registerNewUser;
 }
 
-const loginUser = async ({email, password}: Auth) => {
+const loginUser = async ({ email, password }: Auth) => {
     const checkIs = await UserModel.findOne({ email })
-    if(!checkIs) return 'INVALID_INFORMATION'
+    if (!checkIs) return 'INVALID_INFORMATION'
 
     // Obtenemos el password Encriptado
     const passwordHash = checkIs.password;
 
     const isCorrect = await verified(password, passwordHash)
-    if(!isCorrect) return 'PASSWORD_INCORRECT'
+    if (!isCorrect) return 'PASSWORD_INCORRECT'
 
     const token = await generateToken(checkIs.email);
-
     const data = { token, user: checkIs }
-    
+
     return data;
 }
 

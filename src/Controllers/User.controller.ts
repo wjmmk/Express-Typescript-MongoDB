@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { inserUser, getUserItems, getUserItem, updateUserItem, deleteUserItem } from '../Services/User.service';
 import { handleHttp } from '../Utils/error.handle';
+import UserModel from '../Models/User.model';
+import { encrypt } from '../Utils/bcrypt.handle';
+import { User } from '../Interfaces/user.interface';
 
 
 const getUsers = async (req:Request, res: Response) => {
@@ -25,9 +28,20 @@ const getUser = async ({params}:Request, res: Response) => {
 
 const postUser = async (req:Request, res: Response) => {
     try {
-        const {body} = req;
-        const respUser = await inserUser(body)
-        res.send({respUser})
+        const {email, password, name, age, ocupacion, phone, rol}: User = req.body;
+        const checkIs = await UserModel.findOne({email})
+        if(checkIs) return 'USER_EXISTS'
+        const passwordHash = await encrypt(password)
+        const registerNewUser = await UserModel.create({
+            email,
+            password: passwordHash,
+            name,
+            age,
+            ocupacion,
+            phone,
+            rol
+        })
+        res.send({registerNewUser})
     } catch (err) {
         handleHttp(res, 'ERROR_POST_USER');
     }
