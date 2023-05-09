@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { RequestExt } from "../Interfaces/req_ext";
 import { handleHttp } from "../Utils/error.handle";
 
