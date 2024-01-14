@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { inserUser, getUserItems, getUserItem, updateUserItem, deleteUserItem } from '../Services/User.service';
-import { handleHttp } from '../Utils/error.handle';
+import { error, handleHttp, success } from '../Utils/error.handle';
 import UserModel from '../Models/User.model';
 import { encrypt } from '../Utils/bcrypt.handle';
 import { User } from '../Interfaces/user.interface';
@@ -9,9 +9,11 @@ import { User } from '../Interfaces/user.interface';
 const getUsers = async (req:Request, res: Response) => {
     try {
         const respUsers = await getUserItems();
-        res.send({respUsers});
+        /* res.send({respUsers}); */
+        success(res, 'The request was resolved correctly.', respUsers)
     } catch (err) {
-        handleHttp(res, 'ERROR_GET_USERS');
+        /* handleHttp(res, 'ERROR_GET_USERS'); */
+        error(res, 'The request could not be resolved correctly.');
     }
 }
 
@@ -41,7 +43,8 @@ const postUser = async (req:Request, res: Response) => {
             phone,
             rol
         })
-        res.send({registerNewUser})
+        /* res.send({registerNewUser}) */
+        success(res, 'The request was resolved correctly.', registerNewUser)
     } catch (err) {
         handleHttp(res, 'ERROR_POST_USER');
     }
