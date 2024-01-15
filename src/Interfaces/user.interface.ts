@@ -6,4 +6,5 @@ export interface User extends Auth {
     phone: string;
     rol: "Admin" | "User";
     ocupacion: string;
+    description: string;
 }

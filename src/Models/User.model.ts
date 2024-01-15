@@ -30,6 +30,9 @@ const UserSchema = new Schema<User>(
         ocupacion: {
             type: String,
             required: true
+        },
+        description: {
+            type: String,
         }
     },
     {

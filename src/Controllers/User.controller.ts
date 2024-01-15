@@ -30,7 +30,7 @@ const getUser = async ({params}:Request, res: Response) => {
 
 const postUser = async (req:Request, res: Response) => {
     try {
-        const {email, password, name, age, ocupacion, phone, rol}: User = req.body;
+        const {email, password, name, age, ocupacion, phone, rol, description}: User = req.body;
         const checkIs = await UserModel.findOne({email})
         if(checkIs) return 'USER_EXISTS'
         const passwordHash = await encrypt(password)
@@ -41,10 +41,11 @@ const postUser = async (req:Request, res: Response) => {
             age,
             ocupacion,
             phone,
-            rol
+            rol,
+            description
         })
-        /* res.send({registerNewUser}) */
-        success(res, 'The request was resolved correctly.', registerNewUser)
+        res.send({registerNewUser})
+       /*  success(res, 'The request was resolved correctly.', registerNewUser) */
     } catch (err) {
         handleHttp(res, 'ERROR_POST_USER');
     }

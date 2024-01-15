@@ -5,7 +5,7 @@ import { encrypt, verified } from "../Utils/bcrypt.handle"
 import { generateToken } from "../Utils/jwt.handle"
 
 
-const registerNewUser = async ({email, password, name, age, ocupacion, phone, rol}: User) => {
+const registerNewUser = async ({email, password, name, age, ocupacion, phone, rol, description}: User) => {
 
     const checkIs = await UserModel.findOne({ email })
     if(checkIs) return 'USER_EXISTS'
@@ -18,7 +18,8 @@ const registerNewUser = async ({email, password, name, age, ocupacion, phone, ro
         age,
         ocupacion,
         phone,
-        rol
+        rol, 
+        description
      })
 
     return registerNewUser;
