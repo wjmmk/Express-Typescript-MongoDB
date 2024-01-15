@@ -8,7 +8,7 @@ const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
       const jwtByUser = req.headers.authorization || '';
       const jwtBearer = jwtByUser?.split(' ').pop();
       const isUserOk = verifyToken(`${jwtBearer}`) as {id: string};
-      console.log(isUserOk)
+      //console.log(isUserOk)
       if(!isUserOk){
         res.status(401).send('SESSION_INVALID')
       } else { 
