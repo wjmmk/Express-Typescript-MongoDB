@@ -15,7 +15,7 @@ const getFile = async (req: RequestExt, res: Response) => {
         }
 
         const respInfo = await registerUpload(dataToRegister);
-        //console.log(file)
+        //console.log(file) 
         res.send(respInfo);
     } catch (err) {
         handleHttp(res, 'ERROR_GET_ BLOG')
