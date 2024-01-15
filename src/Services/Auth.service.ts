@@ -10,7 +10,7 @@ const registerNewUser = async ({email, password, name, age, ocupacion, phone, ro
     const checkIs = await UserModel.findOne({ email })
     if(checkIs) return 'USER_EXISTS'
 
-    const passwordHash = await encrypt(password)
+    const passwordHash = await encrypt(password) // Contraseña que se envia por Formulario &/O Postman.
     const registerNewUser = await UserModel.create({ 
         email, 
         password: passwordHash,
@@ -27,6 +27,7 @@ const registerNewUser = async ({email, password, name, age, ocupacion, phone, ro
 
 const loginUser = async ({ email, password }: Auth) => {
     const checkIs = await UserModel.findOne({ email })
+    
     if (!checkIs) return 'INVALID_INFORMATION'
 
     // Obtenemos el password Encriptado
