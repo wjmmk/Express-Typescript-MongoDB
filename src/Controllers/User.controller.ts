@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { inserUser, getUserItems, getUserItem, updateUserItem, deleteUserItem } from '../Services/User.service';
+import { getUserItems, getUserItem, updateUserItem, deleteUserItem } from '../Services/User.service';
 import { error, handleHttp, success } from '../Utils/error.handle';
-import UserModel from '../Models/User.model';
+/* import UserModel from '../Models/User.model';
 import { encrypt } from '../Utils/bcrypt.handle';
-import { User } from '../Interfaces/user.interface';
+import { User } from '../Interfaces/user.interface'; */
 
 
 const getUsers = async (req:Request, res: Response) => {
@@ -28,7 +28,7 @@ const getUser = async ({params}:Request, res: Response) => {
     }
 }
 
-const postUser = async (req:Request, res: Response) => {
+/* const postUser = async (req:Request, res: Response) => {
     try {
         const {email, password, name, age, ocupacion, phone, rol, description}: User = req.body;
         const checkIs = await UserModel.findOne({email})
@@ -45,11 +45,11 @@ const postUser = async (req:Request, res: Response) => {
             description
         })
         res.send({registerNewUser})
-       /*  success(res, 'The request was resolved correctly.', registerNewUser) */
+       //  success(res, 'The request was resolved correctly.', registerNewUser) 
     } catch (err) {
         handleHttp(res, 'ERROR_POST_USER');
     }
-}
+} */
 
 const updateUser = async ({params, body}:Request, res: Response) => {
     try {
@@ -74,7 +74,7 @@ const deleteUser = async ({params}:Request, res: Response) => {
 export {
     getUser,
     getUsers,
-    postUser,
+ //   postUser,
     updateUser,
     deleteUser
 }
