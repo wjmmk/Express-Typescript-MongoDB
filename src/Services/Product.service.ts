@@ -11,5 +11,13 @@ const getProductItems = async () => {
     return respItems;
 }
 
+const getProductItem = async (id: string) => {
+    const respUser = await ProductModel.findOne({_id: id})
+    return respUser;
+}
 
-export { inserProduct, getProductItems }
+export { 
+    inserProduct, 
+    getProductItems,
+    getProductItem
+}
