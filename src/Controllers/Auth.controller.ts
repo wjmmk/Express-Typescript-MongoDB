@@ -18,7 +18,7 @@ const loginCtrl = async ({body}: Request, res: Response) => {
             const respLoginUser = await loginUser({ email, password });
 
             if (respLoginUser === "PASSWORD_INCORRECT") {
-                res.status(403).send(respLoginUser)
+                res.status(401).send(respLoginUser)
             } else { res.send(respLoginUser) } 
 
     } catch (err) {
